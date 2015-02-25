@@ -1,0 +1,56 @@
+{
+  "cursor": {
+    "active_database": "logsapache4"
+  }, 
+  "db": {
+    "logsapache1": {
+      "numports": 1, 
+      "table": {}, 
+      "variable": {}, 
+      "vector": {
+        "vector1": {
+          "columns": "s,pkey:day i,+add:pagecount i,+add:hitcount i,+add:pagebytes"
+        }
+      }
+    }, 
+    "logsapache2": {
+      "numports": 1, 
+      "table": {}, 
+      "variable": {}, 
+      "vector": {
+        "vector2": {
+          "columns": "s,pkey:hour i,+add:pagecount i,+add:hitcount i,+add:pagebytes"
+        }
+      }
+    }, 
+    "logsapache3": {
+      "numports": 1, 
+      "table": {}, 
+      "variable": {}, 
+      "vector": {
+        "vector3": {
+          "columns": "s,pkey:monthsummary i,+add:pagecount i,+add:hitcount i,+add:pagebytes"
+        }
+      }
+    }, 
+    "logsapache4": {
+      "numports": 1, 
+      "table": {}, 
+      "variable": {}, 
+      "vector": {
+        "vector4": {
+          "columns": "s,pkey:dayoftheweek i,+add:pagecount i,+add:hitcount i,+add:pagebytes"
+        }
+      }
+    }
+  }, 
+  "ports": {
+    "list": [
+      10010, 
+      10011, 
+      10012, 
+      10013
+    ], 
+    "number": 4
+  }
+}
