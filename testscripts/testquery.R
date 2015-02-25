@@ -1,4 +1,4 @@
-rscriptfile <- "requiredfiles/timeapache.R"
+rscriptfile <- "timeapache.R"
 library(RESS)
 
 command1 <- essQuery("aq_udb -exp logsapache3:vector3", "--debug")

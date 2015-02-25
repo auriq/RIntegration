@@ -1,5 +1,5 @@
-file <- "requiredfiles/querytimeapache.sh"
-rscriptfile <- "requiredfiles/timeapache.R"
+file <- "querytimeapache.sh"
+rscriptfile <- "timeapache.R"
 
 library("RESS")
 
