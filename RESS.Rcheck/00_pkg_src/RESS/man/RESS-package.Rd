@@ -14,8 +14,8 @@ read.udb takes a file containing any number of Essentia commands
 and captures the output of the specified statements into R
 dataframes.
 
-read.udb can be used to stream multiple files directly into R with
-a single command but essQuery is limited to one file per command.
+%% ~~read.udb can be used to stream multiple files directly into R with~~
+%% ~~a single command but essQuery is limited to one file per command.~~
 
 }
 \details{
@@ -24,7 +24,7 @@ Package: \tab RESS\cr
 Type: \tab Package\cr
 Version: \tab 1.0\cr
 Date: \tab 2015-02-24\cr
-License: \tab Same as Essentia. Free to use but do not make or distribute any copies.\cr
+License: \tab LGPL-3 \cr
 }
 }
 \author{

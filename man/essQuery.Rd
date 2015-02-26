@@ -13,9 +13,9 @@ essQuery(essentia, aq="", flags="")
 The essentia command to run. The options are "ess task stream
 category startdate enddate" and "ess task exec".
 
-Each stream command can only be used to stream one file
-directly into your R analysis.  However, each stream command
-can save multiple files into a single R dataframe.
+Each stream command can be used to stream any number of files
+directly into your R analysis. Alternatively, each stream command
+can save multiple files into separate R dataframes, one file per dataframe.
 
 The default value for the essentia argument is "ess task
 exec".
@@ -47,6 +47,9 @@ R dataframe using an 'ess task stream' command. Saves each
 file into a different R dataframe, entitled command1 to
 commandN, where N is the number of files.
 
+\code{#filelist} : Causes an extra dataframe to be stored in R that saves 
+the list of files streamed into R when streaming multiple files.
+
 \code{#R#name#R#} : Allows any automatically saved dataframe to be
 renamed to whatever is entered in place of 'name'. This only
 applies in essQuery when streaming multiple files.
@@ -68,10 +71,14 @@ you use read.udb.
 The value returned is the output from querying the database. This
 can be saved into an R dataframe or directly analyzed in R.
 
-If you use essQuery to save multiple files into an R dataframe
+If you use essQuery to save multiple files into a separate R dataframes
 using a single stream command, the files are stored automatically
-in an R dataframe called command1 and no value is returned. To
-change the name of the stored dataframe, use the #R#NAME#R# flag.
+in R dataframes called command1 to commandN (where N is the number of files) 
+and no value is returned. To change the name of the stored dataframes, use 
+the #R#any_name#R# flag. The dataframes will then be stored as any_name1 to any_nameN.
+
+With #filelist, the extra dataframe is saved as commandN+1 by default, or 
+any_nameN+1 if #R#any_name#R# is also used.
 
 }
 \references{

@@ -47,9 +47,8 @@ statements.
 You can include 'ess task stream' statements by adding a
 '#Rinclude' flag. This method can be used to stream multiple files
 into R for data exploration or analysis.  Thus if you plan to run
-multiple statements that may be somewhat related to each other, or
-you want to stream multiple files into R, it is recommended that
-you use read.udb.
+multiple statements that may be somewhat related to each other,
+it is recommended that you use read.udb.
 
 }
 \value{
@@ -80,10 +79,15 @@ as the header.
 
 \code{#Rseparate} : Can be used when saving multiple files into an
 R dataframe using an 'ess task stream' command. Saves each
-file into a different R dataframe, entitled command1 to
-commandN, where N is the number of files.
+file into a different R dataframe.
+
+\code{#filelist} : Causes an extra dataframe to be stored in R that saves
+the list of files streamed into R when streaming multiple files.
 
 \code{#R#name#R#} : Allows any automatically saved dataframe to be
-renamed to whatever is entered in place of 'name'.
+renamed to whatever is entered in place of 'name'. When used with 
+#Rseparate, saves the files as name1 to nameN, where N is the number of files. 
+Since this still counts as a statement, the next default dataframe saved will 
+be stored as command followed by the number of previous statements run plus one. 
 
 }

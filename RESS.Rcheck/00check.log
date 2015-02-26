@@ -16,11 +16,7 @@
 * checking whether package ‘RESS’ can be installed ... OK
 * checking installed package size ... OK
 * checking package directory ... OK
-* checking DESCRIPTION meta-information ... WARNING
-Non-standard license specification:
-  Same as Essentia. Free to use but do not make or distribute any
-  copies.
-Standardizable: FALSE
+* checking DESCRIPTION meta-information ... OK
 * checking top-level files ... OK
 * checking for left-over files ... OK
 * checking index information ... OK
@@ -47,4 +43,3 @@ Standardizable: FALSE
 * checking for unstated dependencies in examples ... OK
 * checking examples ... NONE
 * checking PDF version of manual ... OK
-WARNING: There was 1 warning.
