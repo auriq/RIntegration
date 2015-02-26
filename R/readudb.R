@@ -1,13 +1,11 @@
 read.udb <- function(file, linenumber = "all") {
-  querynumber <- linenumber
-  print(querynumber)
   commandcount <- 1
   lineold <- ""
-  if (querynumber == "all") {
+  if (linenumber == "all") {
     lines <- readLines(file)
   }
   else {
-    lines <- readLines(file)[[querynumber]]
+    lines <- readLines(file)[[linenumber]]
   }
   for (line in lines) {
     print(line)
@@ -33,7 +31,7 @@ read.udb <- function(file, linenumber = "all") {
       if (grepl("-notitle", line)) {
         colspec <- FALSE
       }
-      varname <- ""
+      varname <- "command"
       if (grepl("#R#", line)) {
         titleindex <- grepRaw("#R#", line, all = TRUE)
         varname <- substr(line, titleindex[[1]] + 3, titleindex[[2]] - 1)
@@ -42,23 +40,32 @@ read.udb <- function(file, linenumber = "all") {
       index <- 1
       t3 <- NULL
       separate <- grepl(" #Rseparate", line)
-      for (file in seq(1, length(which(t2[, 1] == "RSTOPHERE")), 1)) {
+      for (file in seq(1, length(which(t2[,1] == "RSTOPHERE")), 1)) {
         if (separate) {
-          assign(sprintf("command%i", commandcount), t2[index:(which(t2[, 1] == "RSTOPHERE")[[file]] - 1), 1:ncol(t2)], inherits = TRUE)
-          index <- which(t2[, 1] == "RSTOPHERE")[[file]] + 1
-          print(get(sprintf("command%i", commandcount)))
-          commandcount <- commandcount + 1
+	  if (varname == "command") {
+                  assign(sprintf("%s%i", varname, commandcount), t2[index:(which(t2[, 1] == "RSTOPHERE")[[file]] - 1), 1:ncol(t2)], inherits = TRUE)
+                  index <- which(t2[,1] == "RSTOPHERE")[[file]] + 1
+                  print(get(sprintf("%s%i", varname, commandcount)))
+                  commandcount <- commandcount + 1
+	  }
+          else {
+	          assign(sprintf("%s%i", varname, file), t2[index:(which(t2[, 1] == "RSTOPHERE")[[file]] - 1), 1:ncol(t2)], inherits = TRUE)
+        	  index <- which(t2[,1] == "RSTOPHERE")[[file]] + 1
+	          print(get(sprintf("%s%i", varname, file)))
+        	  commandcount <- commandcount + 1
+	  }
         }
         else {
           t3 <- rbind(t3, t2[index:(which(t2[, 1] == "RSTOPHERE")[[file]] - 1), 1:ncol(t2)])
           index <- which(t2[, 1] == "RSTOPHERE")[[file]] + 1
           if ((file == length(which(t2[, 1] == "RSTOPHERE")))) {
-            if ((length(which(t2[, 1] == "RSTOPHERE")) == 1) && (querynumber != "all")) {
+            if ((length(which(t2[, 1] == "RSTOPHERE")) == 1) && (linenumber != "all")) {
               commandcount <- commandcount + 1
+	      remove(t2)
               return(t3)
             }
             else {
-              if (varname == "") {
+              if (varname == "command") {
                 assign(sprintf("command%i", commandcount), t3, inherits = TRUE)
                 print(get(sprintf("command%i", commandcount)))
                 print(sprintf("---------------- Output Stored in command%i ----------------", commandcount))
@@ -74,18 +81,37 @@ read.udb <- function(file, linenumber = "all") {
         }
       }
       remove(t2)
-      if ((file > 1) && (grepl(" #Rseparate", line))) {
-        print(sprintf("---------------- Stream Completed: %i files stored in %i commands: command%i to command%i ----------------", file, file, commandcount - file, commandcount - 1))
-        linepart1 <- unlist(strsplit(line, split = " "))
-        t1 <- pipe(paste(linepart1[[1]], linepart1[[2]], linepart1[[3]], linepart1[[4]], linepart1[[5]], linepart1[[6]], "\"aq_pp -f,eok - -d %cols 2> /dev/null | echo %file \"", sep = " "), open = "r")
-        t2 <- read.csv(t1, header = FALSE, sep = ",", quote = "\"'", comment.char = "#", blank.lines.skip = FALSE, allowEscapes = TRUE, skip = 0)
-        assign(sprintf("command%i", commandcount), t2[1:file,1:ncol(t2)], inherits = TRUE)
-        print(get(sprintf("command%i", commandcount)))
-        print(sprintf("---------------- Filenames stored in command%i ----------------", commandcount))
-        commandcount <- commandcount + 1
-        close(t1)
-        remove(t1)
-        remove(t2)
+      if ((file > 1) && (separate)) {
+	if (varname == "command") {
+	        print(sprintf("---------------- Stream Completed: %i files stored in %i commands: command%i to command%i ----------------", file, file, commandcount - file, commandcount - 1))
+		if (grepl("#filelist",line)) {
+			linepart1 <- unlist(strsplit(line, split = " "))
+        	        t1 <- pipe(paste(linepart1[[1]], linepart1[[2]], linepart1[[3]], linepart1[[4]], linepart1[[5]], linepart1[[6]], "\"aq_pp -f,eok - -d %cols 2> /dev/null | echo %file \"", sep = " "), open = "r")
+                	t2 <- read.csv(t1, header = FALSE, sep = ",", quote = "\"'", comment.char = "#", blank.lines.skip = FALSE, allowEscapes = TRUE, skip = 0)
+	                assign(sprintf("command%i", commandcount), t2[1:file,1:ncol(t2)], inherits = TRUE)
+        	        print(get(sprintf("command%i", commandcount)))
+                	print(sprintf("---------------- Filenames stored in command%i ----------------", commandcount))
+	                commandcount <- commandcount + 1
+        	        close(t1)
+                	remove(t1)
+	                remove(t2)
+		}
+        }
+	else {
+		print(sprintf("---------------- Stream Completed: %i files stored in %i commands: %s%i to %s%i ----------------", file, file, varname, 1, varname, file))
+		if (grepl("#filelist",line)) {
+			linepart1 <- unlist(strsplit(line, split = " "))
+	                t1 <- pipe(paste(linepart1[[1]], linepart1[[2]], linepart1[[3]], linepart1[[4]], linepart1[[5]], linepart1[[6]], "\"aq_pp -f,eok - -d %cols 2> /dev/null | echo %file \"", sep = " "), open = "r")
+        	        t2 <- read.csv(t1, header = FALSE, sep = ",", quote = "\"'", comment.char = "#", blank.lines.skip = FALSE, allowEscapes = TRUE, skip = 0)
+                	assign(sprintf("command%i", commandcount), t2[1:file,1:ncol(t2)], inherits = TRUE)
+	                print(get(sprintf("command%i", commandcount)))
+        	        print(sprintf("---------------- Filenames stored in command%i ----------------", commandcount))
+                	commandcount <- commandcount + 1
+	                close(t1)
+        	        remove(t1)
+                	remove(t2)
+		}
+	}
       }
     }
     else {

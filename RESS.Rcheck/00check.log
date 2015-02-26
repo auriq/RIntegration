@@ -40,16 +40,11 @@ Standardizable: FALSE
 * checking Rd files ... OK
 * checking Rd metadata ... OK
 * checking Rd cross-references ... OK
-* checking for missing documentation entries ... WARNING
-Undocumented code objects:
-  ‘oldessQuery’ ‘oldread.udb’
-All user-level objects in a package should have documentation entries.
-See the chapter ‘Writing R documentation files’ in the ‘Writing R
-Extensions’ manual.
+* checking for missing documentation entries ... OK
 * checking for code/documentation mismatches ... OK
 * checking Rd \usage sections ... OK
 * checking Rd contents ... OK
 * checking for unstated dependencies in examples ... OK
 * checking examples ... NONE
 * checking PDF version of manual ... OK
-WARNING: There were 2 warnings.
+WARNING: There was 1 warning.

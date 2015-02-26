@@ -8,5 +8,5 @@ Maintainer: Who to complain to <bwaxer@auriq.com>
 Description: Query the Essentia Database and access the results in R
 License: Same as Essentia. Free to use but do not make or distribute
         any copies.
-Packaged: 2015-02-25 01:36:42 UTC; root
-Built: R 3.1.1; ; 2015-02-25 01:37:13 UTC; unix
+Packaged: 2015-02-26 17:43:55 UTC; ec2-user
+Built: R 3.1.1; ; 2015-02-26 17:44:12 UTC; unix

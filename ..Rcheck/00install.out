@@ -1,0 +1,12 @@
+* installing *source* package ‘RESS’ ...
+** R
+** preparing package for lazy loading
+** help
+Warning: /home/ec2-user/jobs/R/RESS/man/RESS-package.Rd:33: All text must be in a section
+Warning: /home/ec2-user/jobs/R/RESS/man/RESS-package.Rd:34: All text must be in a section
+*** installing help indices
+Error in Rd_info(db[[i]]) : 
+  missing/empty \title field in '/home/ec2-user/jobs/R/RESS/man/essQuery.Rd'
+Rd files must have a non-empty \title.
+See chapter 'Writing R documentation' in manual 'Writing R Extensions'.
+* removing ‘/home/ec2-user/jobs/R/RESS/..Rcheck/RESS’
