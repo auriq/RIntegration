@@ -32,7 +32,9 @@ output from must have its output in csv format.
 This is set to default to all line numbers so that every
 command in the file is executed. You can specify the line
 number of the command you wish to run if you dont want to run
-the entire set of commands in the file.
+the entire set of commands in the file. If your statement spans
+multiple lines, you can specify each line using the syntax
+c(first_line_number, second_line_number, ....).
 
 }
 }

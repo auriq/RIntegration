@@ -52,7 +52,7 @@ the list of files streamed into R when streaming multiple files.
 
 \code{#R#name#R#} : Allows any automatically saved dataframe to be
 renamed to whatever is entered in place of 'name'. This only
-applies in essQuery when streaming multiple files.
+applies in essQuery when streaming multiple files with \code{#Rseparate}.
 
 }
 }
@@ -71,7 +71,7 @@ you use read.udb.
 The value returned is the output from querying the database. This
 can be saved into an R dataframe or directly analyzed in R.
 
-If you use essQuery to save multiple files into a separate R dataframes
+If you use essQuery to save multiple files into separate R dataframes
 using a single stream command, the files are stored automatically
 in R dataframes called command1 to commandN (where N is the number of files) 
 and no value is returned. To change the name of the stored dataframes, use 

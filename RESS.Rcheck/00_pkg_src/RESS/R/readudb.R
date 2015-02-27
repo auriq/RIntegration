@@ -5,7 +5,7 @@ read.udb <- function(file, linenumber = "all") {
     lines <- readLines(file)
   }
   else {
-    lines <- readLines(file)[[linenumber]]
+    lines <- readLines(file)[linenumber]
   }
   for (line in lines) {
     print(line)
@@ -59,24 +59,17 @@ read.udb <- function(file, linenumber = "all") {
           t3 <- rbind(t3, t2[index:(which(t2[, 1] == "RSTOPHERE")[[file]] - 1), 1:ncol(t2)])
           index <- which(t2[, 1] == "RSTOPHERE")[[file]] + 1
           if ((file == length(which(t2[, 1] == "RSTOPHERE")))) {
-            if ((length(which(t2[, 1] == "RSTOPHERE")) == 1) && (linenumber != "all")) {
-              commandcount <- commandcount + 1
-	      remove(t2)
-              return(t3)
+            if (varname == "command") {
+               assign(sprintf("command%i", commandcount), t3, inherits = TRUE)
+               print(get(sprintf("command%i", commandcount)))
+               print(sprintf("---------------- Output Stored in command%i ----------------", commandcount))
             }
             else {
-              if (varname == "command") {
-                assign(sprintf("command%i", commandcount), t3, inherits = TRUE)
-                print(get(sprintf("command%i", commandcount)))
-                print(sprintf("---------------- Output Stored in command%i ----------------", commandcount))
-              }
-              else {
-                assign(sprintf("%s", varname), t3, inherits = TRUE)
-                print(get(sprintf("%s", varname)))
-                print(sprintf("---------------- Output Stored in %s ----------------", varname))
-              }
-              commandcount <- commandcount + 1
+               assign(sprintf("%s", varname), t3, inherits = TRUE)
+               print(get(sprintf("%s", varname)))
+               print(sprintf("---------------- Output Stored in %s ----------------", varname))
             }
+            commandcount <- commandcount + 1
           }
         }
       }
@@ -103,10 +96,9 @@ read.udb <- function(file, linenumber = "all") {
 			linepart1 <- unlist(strsplit(line, split = " "))
 	                t1 <- pipe(paste(linepart1[[1]], linepart1[[2]], linepart1[[3]], linepart1[[4]], linepart1[[5]], linepart1[[6]], "\"aq_pp -f,eok - -d %cols 2> /dev/null | echo %file \"", sep = " "), open = "r")
         	        t2 <- read.csv(t1, header = FALSE, sep = ",", quote = "\"'", comment.char = "#", blank.lines.skip = FALSE, allowEscapes = TRUE, skip = 0)
-                	assign(sprintf("command%i", commandcount), t2[1:file,1:ncol(t2)], inherits = TRUE)
-	                print(get(sprintf("command%i", commandcount)))
-        	        print(sprintf("---------------- Filenames stored in command%i ----------------", commandcount))
-                	commandcount <- commandcount + 1
+                	assign(sprintf("%s%i", varname, file + 1), t2[1:file,1:ncol(t2)], inherits = TRUE)
+	                print(get(sprintf("%s%i", varname, file + 1)))
+        	        print(sprintf("---------------- Filenames stored in %s%i ----------------", varname, file + 1))
 	                close(t1)
         	        remove(t1)
                 	remove(t2)
