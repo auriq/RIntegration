@@ -25,11 +25,11 @@ This package contains two R functions that can be used to capture the output of 
   that may be somewhat related to each other, it is recommended that you use **read.udb**.
 
 Both functions require an Essentia Bash script to be executed that sets up the Essentia environment and optionally loads data into the UDB database. 
-This script is called loadtimeapache.sh and thus we need to run:
+We called this script loadtimeapache.sh so we need to run:
 
 sh loadtimeapache.sh
 
-The only thing needed to complete the apache analysis is to run our scripts that call essQuery and read.udb. Thus we run
+The only thing needed to complete the apache analysis is to run the scripts that call essQuery and read.udb. Run each of the following commands separately on the command line to test the RESS package:
 
 R –f callessquery.R
 
@@ -39,6 +39,5 @@ R -f testquery.R
 
 R -f secondtest.R
 
-separately on the command line.
-
+For a more detailed walkthrough of this analysis and the steps involved, please review our R Apache Analysis Case Study at http://www.auriq.com/documentation/source/usecases/rapache.html
 
