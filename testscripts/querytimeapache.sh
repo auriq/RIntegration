@@ -1,4 +1,4 @@
-# bash loadtimeapache.sh
+# sh loadtimeapache.sh
 # Run to load the data into the udbd database.
 
 
