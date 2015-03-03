@@ -22,16 +22,20 @@ essQuery <- function(essentia, aq = "", flags = "") {
       index <- 1
       t3 <- NULL
       separate <- grepl(" #Rseparate", line)
+      adjust <- 1
+      if (grepl("-stat",line)) {adjust <- 2}
       for (file in seq(1, length(which(t2[,1] == "RSTOPHERE")),1)) {
         if (separate) {
-          assign(sprintf("%s%i", varname, commandcount), t2[index:(which(t2[,1] == "RSTOPHERE")[[file]] - 1),1:ncol(t2)], inherits = TRUE)
+          assign(sprintf("%s%i", varname, commandcount), t2[index:(which(t2[,1] == "RSTOPHERE")[[file]] - adjust),1:ncol(t2)], inherits = TRUE)
           index <- which(t2[,1] == "RSTOPHERE")[[file]] +  1
           print(get(sprintf("%s%i", varname, commandcount)))
+          print(t2[(which(t2[,1] == "RSTOPHERE")[[file]] - adjust),])
 	  commandcount <- commandcount + 1
         }
         else {
-          t3 <- rbind(t3, t2[index:(which(t2[,1] == "RSTOPHERE")[[file]] - 1),1:ncol(t2)])
+          t3 <- rbind(t3, t2[index:(which(t2[,1] == "RSTOPHERE")[[file]] - adjust),1:ncol(t2)])
           index <- which(t2[,1] == "RSTOPHERE")[[file]] +  1
+          print(t2[(which(t2[,1] == "RSTOPHERE")[[file]] - adjust),])
           if ((file == length(which(t2[,1] == "RSTOPHERE")))) {
              commandcount <- commandcount + 1
              remove(t2)
