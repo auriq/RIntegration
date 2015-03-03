@@ -3,7 +3,7 @@
 \alias{RESS}
 \docType{package}
 \title{
-Integrates R and Essentia.
+Integrates R and Essentia. Essentia can be downloaded for free at http://www.auriq.com/documentation/source/install.html
 }
 \description{
 essQuery takes a single Essentia command and captures the output
@@ -30,6 +30,6 @@ License: \tab LGPL-3 \cr
 \author{
 Ben Waxer, Data Scientist with Auriq Systems.
 
-Maintainer: Who to complain to <bwaxer@auriq.com>
+Maintainer: Ben Waxer <bwaxer@auriq.com>
 }
 \keyword{ package }
