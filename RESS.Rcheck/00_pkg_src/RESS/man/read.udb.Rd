@@ -95,13 +95,13 @@ be stored as command followed by the number of previous statements run plus one.
 }
 \examples{
 queryfile <- file("examplequery.sh","w")
-cat("ess task exec \"echo -e '11,12,13\\n4,5,6\\n7,8,9'\" #-notitle \n",file=queryfile)
-cat("ess task exec \"echo -e '11,12,13\\n4,5,6\\n7,8,9'\" \n", file=queryfile)
-cat("ess task exec \"echo -e '11,12,13\\n4,5,6\\n7,8,9'\" #Rignore \n", file=queryfile)
+cat("ess instance local \n",file=queryfile)
+cat("ess task exec \"echo -e '11,12,13\\\n4,5,6\\\n7,8,9'\" #-notitle \n",file=queryfile)
+cat("ess task exec \"echo -e '11,12,13\\\n4,5,6\\\n7,8,9'\" \n", file=queryfile)
+cat("ess task exec \"echo -e '11,12,13\\\n4,5,6\\\n7,8,9'\" #Rignore \n", file=queryfile)
 read.udb("examplequery.sh")
 print(command1)
 print(command2)
 print("The last statement is ignored by R and just executed on the command line.")
-\dontrun{For more extensive examples of how these functions can be used with the Essentia Database, please go through our documentation at http://www.auriq.com/documentation/source/tutorial/rtutorial.html}
+\dontrun{The references contain more extensive examples that query the Essentia Database}
 }
-

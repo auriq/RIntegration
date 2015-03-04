@@ -90,11 +90,12 @@ www.auriq.net/documentation
 Ben Waxer, Data Scientist with Auriq Systems.
 }
 \examples{
+essQuery("ess instance local")
 fullexec <- essQuery("ess task exec", "echo -e '11,12,13\\n4,5,6\\n7,8,9' ","#-notitle")
 print(fullexec)
 defaultexec <- essQuery("echo -e '11,12,13\\n4,5,6\\n7,8,9' ","#-notitle")
 print(defaultexec)
 essQuery("echo -e '11,12,13\\n4,5,6\\n7,8,9' ","#Rignore")
 print("This last statement is ignored by R and just executed on the command line.")
-\dontrun{For more extensive examples of how these functions can be used with the Essentia Database, please go through our documentation at http://www.auriq.com/documentation/source/tutorial/rtutorial.html}
+\dontrun{The references contain more extensive examples that query the Essentia Database}
 }
