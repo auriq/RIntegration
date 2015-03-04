@@ -5,12 +5,8 @@
 * checking for file ‘RESS/DESCRIPTION’ ... OK
 * checking extension type ... Package
 * this is package ‘RESS’ version ‘1.0’
-* checking CRAN incoming feasibility ... NOTE
-Maintainer: ‘Ben Waxer <bwaxer@auriq.com>’
-New submission
 * checking package namespace information ... OK
-* checking package dependencies ... NOTE
-  No repository set, so cyclic dependency check skipped
+* checking package dependencies ... OK
 * checking if this is a source package ... OK
 * checking if there is a namespace ... OK
 * checking for executable files ... OK
@@ -39,16 +35,26 @@ New submission
 * checking R code for possible problems ... OK
 * checking Rd files ... OK
 * checking Rd metadata ... OK
-* checking Rd line widths ... OK
 * checking Rd cross-references ... OK
 * checking for missing documentation entries ... OK
 * checking for code/documentation mismatches ... OK
 * checking Rd \usage sections ... OK
 * checking Rd contents ... OK
 * checking for unstated dependencies in examples ... OK
-* checking examples ... NONE
-* checking PDF version of manual ... OK
-* checking for code which exercises the package ... WARNING
-No examples, no tests, no vignettes
-WARNING: There was 1 warning.
-NOTE: There were 2 notes.
+* checking examples ... ERROR
+Running examples in ‘RESS-Ex.R’ failed
+The error most likely occurred in:
+
+> ### Name: essQuery
+> ### Title: essQuery
+> ### Aliases: essQuery
+> 
+> ### ** Examples
+> 
+> fullexec <- essQuery("ess task exec", "echo -e '11,12,13\n4,5,6\n7,8,9' ","#-notitle")
+Essentia (INFO)	 : Starting task execution
+Essentia (INFO)	 : Task execution completed in 0:00:00.201757
+Error in seq.default(1, length(which(t2[, 1] == "RSTOPHERE")), 1) : 
+  wrong sign in 'by' argument
+Calls: essQuery -> seq -> seq.default
+Execution halted
