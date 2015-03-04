@@ -2,10 +2,10 @@ Package: RESS
 Type: Package
 Title: Integrates R and Essentia
 Version: 1.0
-Date: 2015-02-12
+Date: 2015-03-03
 Author: Ben Waxer
-Maintainer: Who to complain to <bwaxer@auriq.com>
+Maintainer: Ben Waxer <bwaxer@auriq.com>
 Description: Query the Essentia Database and access the results in R
 License: LGPL-3
-Packaged: 2015-02-27 00:55:19 UTC; ec2-user
-Built: R 3.1.1; ; 2015-02-27 00:55:29 UTC; unix
+Packaged: 2015-03-04 00:38:07 UTC; ec2-user
+Built: R 3.1.1; ; 2015-03-04 00:38:52 UTC; unix

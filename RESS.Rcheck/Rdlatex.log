@@ -67,10 +67,11 @@ No file Rd2.aux.
 (/usr/share/texlive/texmf-dist/tex/generic/oberdiek/gettitlestring.sty))
 (/usr/share/texlive/texmf-dist/tex/latex/psnfss/t1pcr.fd)
 (/usr/share/texlive/texmf-dist/tex/latex/psnfss/t1phv.fd)
-(/usr/share/texlive/texmf-dist/tex/latex/base/utf8.def) [1{/usr/share/texlive/t
-exmf/fonts/map/pdftex/updmap/pdftex.map}]
+(/usr/share/texlive/texmf-dist/tex/latex/base/utf8.def)
+Underfull \vbox (badness 10000) has occurred while \output is active [1{/usr/sh
+are/texlive/texmf/fonts/map/pdftex/updmap/pdftex.map}]
 (/usr/share/texlive/texmf-dist/tex/latex/base/utf8.def) [2]
-Overfull \hbox (38.19733pt too wide) in paragraph at lines 147--149
+Overfull \hbox (38.19733pt too wide) in paragraph at lines 149--151
 []\T1/ptm/m/n/10 With #filelist, the ex-tra dataframe is saved as com-mandN+1 b
 y de-fault, or any_nameN+1 if #R#any_name#R#
 (/usr/share/texlive/texmf-dist/tex/latex/base/utf8.def) [3]
@@ -89,7 +90,7 @@ courier/ucrr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/helvetic/uhvr
 are/texlive/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/share/texlive/tex
 mf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/share/texlive/texmf-dist/fonts/t
 ype1/urw/times/utmri8a.pfb>
-Output written on Rd2.pdf (4 pages, 68746 bytes).
+Output written on Rd2.pdf (4 pages, 68576 bytes).
 Transcript written on Rd2.log.
 This is makeindex, version 2.15 [TeX Live 2013] (kpathsea + Thai support).
 Scanning input file Rd2.idx....done (5 entries accepted, 0 rejected).
@@ -165,10 +166,10 @@ Writing index file Rd2.idx
 (/usr/share/texlive/texmf-dist/tex/latex/psnfss/t1pcr.fd)
 (/usr/share/texlive/texmf-dist/tex/latex/psnfss/t1phv.fd) (./Rd2.toc)
 (/usr/share/texlive/texmf-dist/tex/latex/base/utf8.def)
-Underfull \vbox (badness 10000) has occurred while \output is active [1{/usr/sh
-are/texlive/texmf/fonts/map/pdftex/updmap/pdftex.map}]
+Overfull \vbox (14.37697pt too high) has occurred while \output is active
+[1{/usr/share/texlive/texmf/fonts/map/pdftex/updmap/pdftex.map}]
 (/usr/share/texlive/texmf-dist/tex/latex/base/utf8.def) [2]
-Overfull \hbox (38.19733pt too wide) in paragraph at lines 147--149
+Overfull \hbox (38.19733pt too wide) in paragraph at lines 149--151
 []\T1/ptm/m/n/10 With #filelist, the ex-tra dataframe is saved as com-mandN+1 b
 y de-fault, or any_nameN+1 if #R#any_name#R#
 (/usr/share/texlive/texmf-dist/tex/latex/base/utf8.def) [3] (./Rd2.ind [4]
@@ -188,7 +189,7 @@ r/ucrr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/courier/ucrro8a.pfb
 dist/fonts/type1/urw/times/utmr8a.pfb></usr/share/texlive/texmf-dist/fonts/type
 1/urw/times/utmr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utm
 ri8a.pfb>
-Output written on Rd2.pdf (5 pages, 84227 bytes).
+Output written on Rd2.pdf (5 pages, 84032 bytes).
 Transcript written on Rd2.log.
 This is makeindex, version 2.15 [TeX Live 2013] (kpathsea + Thai support).
 Scanning input file Rd2.idx....done (5 entries accepted, 0 rejected).
@@ -264,10 +265,10 @@ Writing index file Rd2.idx
 (/usr/share/texlive/texmf-dist/tex/latex/psnfss/t1pcr.fd)
 (/usr/share/texlive/texmf-dist/tex/latex/psnfss/t1phv.fd) (./Rd2.toc)
 (/usr/share/texlive/texmf-dist/tex/latex/base/utf8.def)
-Overfull \vbox (20.37697pt too high) has occurred while \output is active
+Overfull \vbox (36.37697pt too high) has occurred while \output is active
 [1{/usr/share/texlive/texmf/fonts/map/pdftex/updmap/pdftex.map}]
 (/usr/share/texlive/texmf-dist/tex/latex/base/utf8.def) [2]
-Overfull \hbox (38.19733pt too wide) in paragraph at lines 147--149
+Overfull \hbox (38.19733pt too wide) in paragraph at lines 149--151
 []\T1/ptm/m/n/10 With #filelist, the ex-tra dataframe is saved as com-mandN+1 b
 y de-fault, or any_nameN+1 if #R#any_name#R#
 (/usr/share/texlive/texmf-dist/tex/latex/base/utf8.def) [3] (./Rd2.ind [4]
@@ -281,8 +282,8 @@ r/ucrr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/courier/ucrro8a.pfb
 dist/fonts/type1/urw/times/utmr8a.pfb></usr/share/texlive/texmf-dist/fonts/type
 1/urw/times/utmr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utm
 ri8a.pfb>
-Output written on Rd2.pdf (5 pages, 84638 bytes).
+Output written on Rd2.pdf (5 pages, 84442 bytes).
 Transcript written on Rd2.log.
 Saving output to 'RESS-manual.pdf' ...
 Done
-You may want to clean up by 'rm -rf /tmp/RtmpAVlobS/Rd2pdf2b872d8e3240'
+You may want to clean up by 'rm -rf /tmp/Rtmp745x74/Rd2pdf2a2d6c137c89'

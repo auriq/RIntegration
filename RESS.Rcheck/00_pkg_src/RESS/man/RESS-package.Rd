@@ -14,6 +14,8 @@ read.udb takes a file containing any number of Essentia commands
 and captures the output of the specified statements into R
 dataframes.
 
+Essentia can be downloaded for free at http://www.auriq.com/documentation/source/install.html
+
 %% ~~read.udb can be used to stream multiple files directly into R with~~
 %% ~~a single command but essQuery is limited to one file per command.~~
 
@@ -30,6 +32,6 @@ License: \tab LGPL-3 \cr
 \author{
 Ben Waxer, Data Scientist with Auriq Systems.
 
-Maintainer: Who to complain to <bwaxer@auriq.com>
+Maintainer: Ben Waxer <bwaxer@auriq.com>
 }
 \keyword{ package }
