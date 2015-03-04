@@ -3,7 +3,7 @@
 \alias{RESS}
 \docType{package}
 \title{
-Integrates R and Essentia. Essentia can be downloaded for free at http://www.auriq.com/documentation/source/install.html
+Integrates R and Essentia.
 }
 \description{
 essQuery takes a single Essentia command and captures the output
@@ -13,6 +13,8 @@ directly into additional analysis.
 read.udb takes a file containing any number of Essentia commands
 and captures the output of the specified statements into R
 dataframes.
+
+Essentia can be downloaded for free at http://www.auriq.com/documentation/source/install.html
 
 %% ~~read.udb can be used to stream multiple files directly into R with~~
 %% ~~a single command but essQuery is limited to one file per command.~~
