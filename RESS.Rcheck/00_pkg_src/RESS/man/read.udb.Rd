@@ -103,5 +103,48 @@ read.udb("examplequery.sh")
 print(command1)
 print(command2)
 print("The last statement is ignored by R and just executed on the command line.")
-\dontrun{The references contain more extensive examples that query the Essentia Database}
+
+\dontrun{
+The following examples require Essentia to be installed with apache log data stored in it.
+
+--------------------------------------------------------------------------------------------------
+
+Store the following lines as queryapache.sh:
+
+# Query the Essentia database logsapache3 and save the contents of vector3 in R as command1.
+ess task exec "aq_udb -exp logsapache3:vector3" --debug
+
+# Query the Essentia database logsapache1 and save the sorted contents of vector1 in R as command2.
+ess task exec "aq_udb -exp logsapache1:vector1 -sort pagecount -dec" --debug
+
+# Stream the last five lines of the file in category 125accesslogs between dates 2014-12-07 and
+# 2014-12-07, convert them to csv, return them to R, and store them into an R dataframe singlefile.
+ess task stream 125accesslogs '2014-12-07' '2014-12-07' "tail -5 \
+| logcnv -f,eok - -d ip:ip sep:' ' s:rlog sep:' ' s:rusr sep:' [' i,tim:time sep:'] \"' \
+s,clf,hl1:req_line1 sep:'\" ' i:res_status sep:' ' i:res_size sep:' \"' \
+s,clf:referrer sep:'\" \"' s,clf:user_agent sep:'\"' X | cat -" #Rinclude #R#singlefile#R#
+
+# Stream the last five lines of the files in category 125accesslogs between dates 2014-11-30 and
+# 2014-12-07, convert them to csv, and save them into R dataframes apachefiles1 and apachefiles2.
+ess task stream 125accesslogs '2014-11-30' '2014-12-07' "tail -5 \
+| logcnv -f,eok - -d ip:ip sep:' ' s:rlog sep:' ' s:rusr sep:' [' i,tim:time sep:'] \"' \
+s,clf,hl1:req_line1 sep:'\" ' i:res_status sep:' ' i:res_size sep:' \"' \
+s,clf:referrer sep:'\" \"' s,clf:user_agent sep:'\"' X -notitle | cat -" \
+#Rinclude #R#apachefiles#R# #Rseparate
+
+--------------------------------------------------------------------------------------------------
+
+Then run these commands in R:
+
+library(RESS)
+read.udb("queryapache.sh")
+
+print(command1)
+print(command2)
+print(singlefile)
+print(apachefiles1)
+print(apachefiles2)
+
+The references contain more extensive examples that walkthrough how to query the Essentia Database.
+}
 }

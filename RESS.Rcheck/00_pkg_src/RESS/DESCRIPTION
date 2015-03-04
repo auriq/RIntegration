@@ -7,4 +7,4 @@ Author: Ben Waxer
 Maintainer: Ben Waxer <bwaxer@auriq.com>
 Description: This package contains two functions that query AuriQ Systems' Essentia Database and return the results in R. 'essQuery' takes a single Essentia command and captures the output in R, where you can save the output to a dataframe or stream it directly into additional analysis. 'read.udb' takes a file containing any number of Essentia commands and captures the output of the specified statements into R dataframes. Essentia can be downloaded for free at http://www.auriq.com/documentation/source/install.html
 License: LGPL-3
-Packaged: 2015-03-04 19:35:59 UTC; ec2-user
+Packaged: 2015-03-04 22:26:42 UTC; ec2-user
