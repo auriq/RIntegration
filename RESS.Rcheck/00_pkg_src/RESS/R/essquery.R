@@ -5,8 +5,11 @@ essQuery <- function(essentia, aq = "", flags = "") {
       aq <- essentia
       essentia <- "ess task exec"
     }
-    if (((substr(essentia, 1, 13) == "ess task exec") && (!grepl("#Rignore", flags))) || ((substr(essentia, 1, 15) == "ess task stream") && (grepl("#Rinclude", flags)))) {
-      aq <- paste(aq, "; echo 'RSTOPHERE'", sep = "")
+    if (((substr(essentia, 1, 13) == "ess task exec") && (!grepl("#Rignore", flags))) || ((substr(essentia, 1, 15) == "ess task stream" || substr(essentia, 1, 9) == "ess query") && (grepl("#Rinclude", flags)))) {
+      if (substr(essentia, 1, 8) == "ess task") {
+	      aq <- paste(aq, "; echo 'RSTOPHERE'", sep = "")
+      }
+      else { flags <- paste("; echo 'RSTOPHERE'", flags, sep=" ") }
       line <- paste(essentia, "\"", aq, "\"", flags, sep = " ")
       colspec <- TRUE
       if (grepl("-notitle", line)) {

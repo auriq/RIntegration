@@ -16,7 +16,7 @@ read.udb(file, linenumber = "all")
 \arguments{
   \item{file}{
 The file containing the essentia commands you want to run.
-'ess task stream' statements will have their output ignored
+'ess task stream' and 'ess query' statements will have their output ignored
 by R unless there is a '#Rinclude' flag somehwere in the
 statement line. 'ess task exec' statements will have their
 output included unless there is a '#Rignore' flag somewhere
@@ -46,9 +46,9 @@ task exec' statements is captured and it's stored in R dataframes
 command1 to commandN, where N is the number of captured
 statements.
 
-You can include 'ess task stream' statements by adding a
+You can include 'ess task stream' or 'ess query' statements by adding a
 '#Rinclude' flag. This method can be used to stream multiple files
-into R for data exploration or analysis.  Thus if you plan to run
+into R for data exploration or analysis.  If you plan to run
 multiple statements that may be somewhat related to each other,
 it is recommended that you use read.udb.
 
@@ -70,10 +70,10 @@ Ben Waxer, Data Scientist with Auriq Systems.
 \note{
 The flags added to the essentia commands in file can include:
 
-\code{#Rignore} : Ignore an 'ess task exec statement. Do not
+\code{#Rignore} : Ignore an 'ess task exec' statement. Do not
 capture the output of the statement into R.
 
-\code{#Rinclude} : Include an 'ess task stream' statement. Capture
+\code{#Rinclude} : Include an 'ess task stream' or 'ess query' statement. Capture
 the output of the statement into R.
 
 \code{#-notitle} : Tell R not to use the first line of the output
@@ -105,9 +105,34 @@ print(command2)
 print("The last statement is ignored by R and just executed on the command line.")
 
 \dontrun{
-The following examples require Essentia to be installed with apache log data stored in it.
+--------------------------------------------------------------------------------------------------
+
+This example requires Essentia to be installed with purchase log data store in it:
+
+Store these lines as querypurchase.sh:
+
+ess query "select price,count(refID) from purchase:2014-09-01:2014-09-15 \
+where articleID>=46 group by price" #Rinclude
+ess query "select count(distinct userID) from purchase:2014-09-01:2014-09-15 \
+where articleID>=46" #Rinclude
+ess query "select userID,count(refID) from purchase:2014-09-01:2014-09-15 \
+where articleID>=46 group by userID" #Rinclude
+ess query "select * from purchase:*:* where articleID <= 20" #Rinclude #R#querystream#R#
+
+-----------------------------------------------
+
+Then run these commands in R:
+
+library(RESS)
+read.udb("querypurchase.sh")
+print(command1)
+print(command2)
+print(command3)
+print(querystream)
 
 --------------------------------------------------------------------------------------------------
+
+The following example requires Essentia to be installed with apache log data stored in it.
 
 Store the following lines as queryapache.sh:
 
@@ -132,7 +157,7 @@ s,clf,hl1:req_line1 sep:'\" ' i:res_status sep:' ' i:res_size sep:' \"' \
 s,clf:referrer sep:'\" \"' s,clf:user_agent sep:'\"' X -notitle | cat -" \
 #Rinclude #R#apachefiles#R# #Rseparate
 
---------------------------------------------------------------------------------------------------
+-----------------------------------------------
 
 Then run these commands in R:
 

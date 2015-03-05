@@ -11,9 +11,9 @@ essQuery(essentia, aq="", flags="")
 \arguments{
   \item{essentia}{
 The essentia command to run. The options are "ess task stream
-category startdate enddate" and "ess task exec".
+category startdate enddate", "ess task exec", and "ess query".
 
-Each stream command can be used to stream any number of files
+Each stream or query command can be used to stream any number of files
 directly into your R analysis. Alternatively, each stream command
 can save multiple files into separate R dataframes, one file per dataframe.
 
@@ -23,9 +23,10 @@ exec".
 }
   \item{aq}{
 This can be any combination of the aq_tools and standard UNIX
-commands. However, the output MUST be in a csv format if you
-want R to capture the output. If you only want to run the
-command without R capturing the output, add "#Rignore" to the
+commands for "ess task ..." statements or an sql-like statement 
+for "ess query" statements. However, the output MUST be in a 
+csv format if you want R to capture the output. If you only want to 
+run the command without R capturing the output, add "#Rignore" to the
 flags argument.
 
 }
@@ -33,11 +34,11 @@ flags argument.
 Any of the essentia flags can be used here in addition to any
 of these RESS-specific flags:
 
-\code{#Rignore} : Ignore an 'ess task exec statement. Do not
+\code{#Rignore} : Ignore an 'ess task exec' statement. Do not
 capture the output of the statement into R.
 
-\code{#Rinclude} : Include an 'ess task stream' statement. Capture
-the output of the statement into R.
+\code{#Rinclude} : Include an 'ess task stream' or 'ess query' statement. 
+Capture the output of the statement into R.
 
 \code{#-notitle} : Tell R not to use the first line of the output
 as the header.
@@ -99,7 +100,29 @@ essQuery("echo -e '11,12,13\\n4,5,6\\n7,8,9' ","#Rignore")
 print("This last statement is ignored by R and just executed on the command line.")
 
 \dontrun{
-The following examples require Essentia to be installed with apache log data stored in it.
+--------------------------------------------------------------------------------------------------
+
+This example requires Essentia to be installed with purchase log data stored in it:
+
+command1 <- essQuery("ess query","select price,count(refID) from purchase:2014-09-01:2014-09-15 \
+where articleID>=46 group by price","#Rinclude")
+command2 <- essQuery("ess query", "select count(distinct userID) from \
+purchase:2014-09-01:2014-09-15 where articleID>=46", "#Rinclude")
+command3 <- essQuery("ess query", "select userID,count(refID) from \
+purchase:2014-09-01:2014-09-15 where articleID>=46 group by userID", "#Rinclude")
+querystream <- essQuery("ess query", "select * from purchase:*:* where articleID <= 20", "\
+#Rinclude")
+
+Then run these commands to view the saved dataframes:
+
+print(command1)
+print(command2)
+print(command3)
+print(querystream)
+
+--------------------------------------------------------------------------------------------------
+
+The following example requires Essentia to be installed with apache log data stored in it:
 
 # Query the Essentia database logsapache3 and return the contents of vector3 into R.
 command1 <- essQuery("aq_udb -exp logsapache3:vector3", "--debug")
