@@ -91,6 +91,11 @@ www.auriq.net/documentation
 Ben Waxer, Data Scientist with Auriq Systems.
 }
 \examples{
+\dontrun{
+--------------------------------------------------------------------------------------------------
+
+These examples require Essentia to be installed:
+
 essQuery("ess instance local")
 fullexec <- essQuery("ess task exec", "echo -e '11,12,13\\n4,5,6\\n7,8,9' ","#-notitle")
 print(fullexec)
@@ -99,10 +104,9 @@ print(defaultexec)
 essQuery("echo -e '11,12,13\\n4,5,6\\n7,8,9' ","#Rignore")
 print("This last statement is ignored by R and just executed on the command line.")
 
-\dontrun{
 --------------------------------------------------------------------------------------------------
 
-This example requires Essentia to be installed with purchase log data stored in it:
+This example requires Essentia to have selected a datastore containing purchase log data:
 
 command1 <- essQuery("ess query","select price,count(refID) from purchase:2014-09-01:2014-09-15 \
 where articleID>=46 group by price","#Rinclude")
@@ -152,6 +156,7 @@ print(singlefile)
 print(apachefiles1)
 print(apachefiles2)
 
-The references contain more extensive examples that walkthrough how to query the Essentia Database.
+The references contain more extensive examples that 
+fully walkthrough how to load and query the Essentia Database.
 }
 }

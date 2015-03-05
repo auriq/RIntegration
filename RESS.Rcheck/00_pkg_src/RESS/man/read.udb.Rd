@@ -94,20 +94,24 @@ be stored as command followed by the number of previous statements run plus one.
 
 }
 \examples{
+\dontrun{
+--------------------------------------------------------------------------------------------------
+
+These examples require Essentia to be installed:
+
 queryfile <- file("examplequery.sh","w")
 cat("ess instance local \n",file=queryfile)
-cat("ess task exec \"echo -e '11,12,13\\\n4,5,6\\\n7,8,9'\" #-notitle \n",file=queryfile)
-cat("ess task exec \"echo -e '11,12,13\\\n4,5,6\\\n7,8,9'\" \n", file=queryfile)
-cat("ess task exec \"echo -e '11,12,13\\\n4,5,6\\\n7,8,9'\" #Rignore \n", file=queryfile)
+cat("ess task exec \"echo -e '11,12,13\\n4,5,6\\n7,8,9'\" #-notitle \n",file=queryfile)
+cat("ess task exec \"echo -e '11,12,13\\n4,5,6\\n7,8,9'\" \n", file=queryfile)
+cat("ess task exec \"echo -e '11,12,13\\n4,5,6\\n7,8,9'\" #Rignore \n", file=queryfile)
 read.udb("examplequery.sh")
 print(command1)
 print(command2)
 print("The last statement is ignored by R and just executed on the command line.")
 
-\dontrun{
 --------------------------------------------------------------------------------------------------
 
-This example requires Essentia to be installed with purchase log data store in it:
+This example requires Essentia to have selected a datastore containing purchase log data:
 
 Store these lines as querypurchase.sh:
 
@@ -170,6 +174,8 @@ print(singlefile)
 print(apachefiles1)
 print(apachefiles2)
 
-The references contain more extensive examples that walkthrough how to query the Essentia Database.
+The references contain more extensive examples that
+fully walkthrough how to load and query the Essentia Database.
+
 }
 }
