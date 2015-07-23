@@ -3,10 +3,10 @@ essQuery <- function(essentia, aq = "", flags = "") {
     if (substr(essentia, 1, 3) != "ess") {
       flags <- aq
       aq <- essentia
-      essentia <- "ess task exec"
+      essentia <- "ess exec"
     }
-    if (((substr(essentia, 1, 13) == "ess task exec") && (!grepl("#Rignore", flags))) || ((substr(essentia, 1, 15) == "ess task stream" || substr(essentia, 1, 9) == "ess query") && (grepl("#Rinclude", flags)))) {
-      if (substr(essentia, 1, 8) == "ess task") {
+    if (((substr(essentia, 1, 8) == "ess exec") && (!grepl("#Rignore", flags))) || ((substr(essentia, 1, 10) == "ess stream" || substr(essentia, 1, 9) == "ess query") && (grepl("#Rinclude", flags)))) {
+      if (substr(essentia, 1, 3) == "ess") {
 	      aq <- paste(aq, "; echo 'RSTOPHERE'", sep = "")
       }
       else { flags <- paste("; echo 'RSTOPHERE'", flags, sep=" ") }
