@@ -11,3 +11,4 @@ Packaged: 2015-03-06 00:33:03 UTC; ec2-user
 NeedsCompilation: no
 Repository: CRAN
 Date/Publication: 2015-03-06 08:20:41
+Imports: utils
