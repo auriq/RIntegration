@@ -1,3 +1,2 @@
 exportPattern("^[[:alpha:]]+")
 importFrom("utils", "read.csv")
-Sys.setenv(PATH=paste(Sys.getenv("PATH"),":/opt/aq_tool/bin",sep=""))
