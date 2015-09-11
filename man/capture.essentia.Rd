@@ -1,21 +1,23 @@
-\name{read.udb}
-\alias{read.udb}
+\name{capture.essentia}
+\alias{capture.essentia}
 %- Also NEED an '\alias' for EACH other topic documented here.
-\title{read.udb
+\title{capture.essentia
 %%  ~~function to do ... ~~
 }
 \description{
-Read the essentia commands in the stated file, query the UDB
+Read the essentia commands in the stated file, query the Essentia
 database, and save the results into R as dataframes.
 
 }
 \usage{
-read.udb(file, linenumber = "all")
+capture.essentia(scriptcall = "", linenumber = "all", separator = " ")
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
-  \item{file}{
-The file containing the essentia commands you want to run.
+  \item{scriptcall}{
+The file containing the essentia commands you want to run and any 
+arguments you want to pass into the bash script. 
+
 'ess stream' and 'ess query' statements will have their output ignored
 by R unless there is a '#Rinclude' flag somehwere in the
 statement line. 'ess exec' statements will have their
@@ -23,7 +25,7 @@ output included unless there is a '#Rignore' flag somewhere
 in the statement line.
 
 The file should contain primarily the query commands but can
-contain the entire essentia script including loading the UDB
+contain the entire essentia script including loading the Essentia
 database if desired. Any command that you want to capture the
 output from must have its output in csv format.
 
@@ -37,9 +39,17 @@ multiple lines, you can specify each line using the syntax
 c(first_line_number, second_line_number, ....).
 
 }
+  \item{separator}{
+The character that should be used to split the script name and 
+arguments you are passing into that script. The default is set
+to a space in the style of the linux command line; however, you
+can set it to whatever you want. This can be useful if one or 
+more of the arguments you are trying to pass into your script 
+contains an unquoted space.
+}
 }
 \details{
-read.udb reads all of the statements in a file (unless linenumber
+capture.essentia reads all of the statements in a file (unless linenumber
 is specified, see above) and captures the output of the specified
 commands into R dataframes. By default only the output of 'ess
 exec' statements is captured and it's stored in R dataframes
@@ -50,13 +60,19 @@ You can include 'ess stream' or 'ess query' statements by adding a
 '#Rinclude' flag. This method can be used to stream multiple files
 into R for data exploration or analysis.  If you plan to run
 multiple statements that may be somewhat related to each other,
-it is recommended that you use read.udb.
+it is recommended that you use capture.essentia.
 
 }
 \value{
-There is no value returned. This command creates a set of R
-dataframes containing the output from the specified essentia
-commands in file.
+If there is only one statement that is having its output captured
+and this statement does not contain a \code{#R#name#R#} flag,
+capture.essentia will simply return the data in R so you can save it
+however you want or stream it directly into additional analysis.
+
+If there is more than one statement that is having its output 
+captured, there is no value returned. This command creates a
+set of R dataframes containing the output from the specified essentia
+commands in the file specified in scriptcall.
 
 }
 \references{
@@ -103,7 +119,7 @@ queryfile <- file("examplequery.sh","w")
 cat("ess exec \"echo -e '11,12,13\\n4,5,6\\n7,8,9'\" #-notitle \n",file=queryfile)
 cat("ess exec \"echo -e '11,12,13\\n4,5,6\\n7,8,9'\" \n", file=queryfile)
 cat("ess exec \"echo -e '11,12,13\\n4,5,6\\n7,8,9'\" #Rignore \n", file=queryfile)
-read.udb("examplequery.sh")
+capture.essentia("examplequery.sh")
 print(command1)
 print(command2)
 print("The last statement is ignored by R and just executed on the command line.")
@@ -120,14 +136,14 @@ ess query "select count(distinct userID) from purchase:2014-09-01:2014-09-15 \
 where articleID>=46" #Rinclude
 ess query "select count(refID) from purchase:2014-09-01:2014-09-15 \
 where articleID>=46 group by userID" #Rinclude
-ess query "select * from purchase:*:* where articleID <= 20" #Rinclude #R#querystream#R#
+ess query "select * from purchase:*:* where articleID <= 20" #Rinclude #R#querystream#R# #-notitle
 
 -----------------------------------------------
 
 Then run these commands in R:
 
 library(RESS)
-read.udb("querypurchase.sh")
+capture.essentia("querypurchase.sh")
 print(command1)
 print(command2)
 print(command3)
@@ -166,7 +182,7 @@ i:res_size sep:' \"' s,clf:referrer sep:'\" \"' s,clf:user_agent sep:'\"' X -not
 Then run these commands in R:
 
 library(RESS)
-read.udb("queryapache.sh")
+capture.essentia("queryapache.sh")
 
 print(command1)
 print(command2)
