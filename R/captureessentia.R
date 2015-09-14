@@ -2,6 +2,7 @@ capture.essentia <- function(scriptcall = "", linenumber = "all", separator = " 
 {
   argumentlist <- read.delim(header=FALSE,sep=separator,quote="\"'",comment.char="#",text=scriptcall)[1,]
   print(argumentlist)
+  tmpcommand1 <- FALSE
   ignoreargs <- FALSE
   if (length(argumentlist)==1) {
     argumentlist <- matrix(argumentlist,1,2)
@@ -99,7 +100,9 @@ capture.essentia <- function(scriptcall = "", linenumber = "all", separator = " 
                                  1), 1:ncol(t2)], inherits = TRUE)
               index <- which(t2[, 1] == "RSTOPHERE")[[file]] + 
                 1
-              print(get(sprintf("%s%i", varname, commandcount)))
+              numrows <- length(get(sprintf("%s%i", varname, commandcount))[,1])
+              print(get(sprintf("%s%i", varname, commandcount))[1:min(10,numrows),])
+              print(sprintf("---------------- There are a total of %i Rows ----------------", numrows))
               commandcount <- commandcount + 1
             }
             else {
@@ -108,7 +111,9 @@ capture.essentia <- function(scriptcall = "", linenumber = "all", separator = " 
                      inherits = TRUE)
               index <- which(t2[, 1] == "RSTOPHERE")[[file]] + 
                 1
-              print(get(sprintf("%s%i", varname, file)))
+              numrows <- length(get(sprintf("%s%i", varname, file))[,1])
+              print(get(sprintf("%s%i", varname, file))[1:min(10,numrows),])
+              print(sprintf("---------------- There are a total of %i Rows ----------------", numrows))
               commandcount <- commandcount + 1
             }
           }
@@ -119,15 +124,27 @@ capture.essentia <- function(scriptcall = "", linenumber = "all", separator = " 
               1
             if ((file == length(which(t2[, 1] == "RSTOPHERE")))) {
               if (varname == "command") {
-                assign(sprintf("command%i", commandcount), 
-                       t3, inherits = TRUE)
-                print(get(sprintf("command%i", commandcount)))
-                print(sprintf("---------------- Output Stored in command%i ----------------", 
-                              commandcount))
+                if (commandcount == 1) {
+                  tmpcommand1 <- t3
+                  numrows <- length(tmpcommand1[,1])
+                  print(tmpcommand1[1:min(10,numrows),])
+                  print(sprintf("---------------- There are a total of %i Rows ----------------", numrows))
+                }
+                else {
+                  assign(sprintf("command%i", commandcount), 
+                         t3, inherits = TRUE)
+                  numrows <- length(get(sprintf("%s%i", varname, commandcount))[,1])
+                  print(get(sprintf("command%i", commandcount))[1:min(10,numrows),])
+                  print(sprintf("---------------- There are a total of %i Rows ----------------", numrows))
+                  print(sprintf("---------------- Output Stored in command%i ----------------", 
+                                commandcount))
+                }
               }
               else {
                 assign(sprintf("%s", varname), t3, inherits = TRUE)
-                print(get(sprintf("%s", varname)))
+                numrows <- length(get(sprintf("%s", varname))[,1])
+                print(get(sprintf("%s", varname))[1:min(10,numrows),])
+                print(sprintf("---------------- There are a total of %i Rows ----------------", numrows))
                 print(sprintf("---------------- Output Stored in %s ----------------", 
                               varname))
               }
@@ -152,7 +169,9 @@ capture.essentia <- function(scriptcall = "", linenumber = "all", separator = " 
                              allowEscapes = TRUE, skip = 0)
               assign(sprintf("command%i", commandcount), 
                      t2[1:file, 1:ncol(t2)], inherits = TRUE)
-              print(get(sprintf("command%i", commandcount)))
+              numrows <- length(get(sprintf("command%i", commandcount))[,1])
+              print(get(sprintf("command%i", commandcount))[1:min(10,numrows),])
+              print(sprintf("---------------- There are a total of %i Files ----------------", numrows))
               print(sprintf("---------------- Filenames stored in command%i ----------------", 
                             commandcount))
               commandcount <- commandcount + 1
@@ -175,8 +194,10 @@ capture.essentia <- function(scriptcall = "", linenumber = "all", separator = " 
                              allowEscapes = TRUE, skip = 0)
               assign(sprintf("%s%i", varname, file + 1), 
                      t2[1:file, 1:ncol(t2)], inherits = TRUE)
+              numrows <- length(get(sprintf("%s%i", varname, file + 1))[,1])
               print(get(sprintf("%s%i", varname, file + 
-                                  1)))
+                                  1))[1:min(10,numrows),])
+              print(sprintf("---------------- There are a total of %i Files ----------------", numrows))
               print(sprintf("---------------- Filenames stored in %s%i ----------------", 
                             varname, file + 1))
               close(t1)
@@ -193,13 +214,17 @@ capture.essentia <- function(scriptcall = "", linenumber = "all", separator = " 
     }
     }
   }
+  if ((commandcount == 2) && (tmpcommand1 != FALSE)) {
+    return(tmpcommand1)
+  }
+  else {
+    if ((commandcount > 2) && (tmpcommand1 != FALSE)) {
+    assign("command1",tmpcommand1,inherits=TRUE)
+    print("---------------- First Command's Output Stored in command1 ----------------")
+    }
+  }
   print(sprintf("---------------- There are a total of %i commands ----------------", 
                 commandcount - 1))
-  if ((commandcount == 2) && (varname=="command")) {
-    returncommand1 <- get("command1",inherits=TRUE)
-    remove(command1,inherits=TRUE)
-    return(returncommand1)
-  }
   remove(colspec, commandcount, index, line, lineold, lines, 
-         separate, t3, varname)
+         separate, t3, varname, tmpcommand1)
 }
