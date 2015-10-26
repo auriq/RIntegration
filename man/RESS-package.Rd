@@ -31,7 +31,7 @@ Essentia can be downloaded for free at http://www.auriq.com/documentation/source
 Package: \tab RESS\cr
 Type: \tab Package\cr
 Version: \tab 1.2\cr
-Date: \tab 2015-09-11\cr
+Date: \tab 2015-10-26\cr
 License: \tab LGPL-3 \cr
 }
 }

@@ -40,6 +40,13 @@ www.auriq.com/documentation
 \author{
 Ben Waxer, Data Scientist with Auriq Systems.
 }
+\note{
+The argument, file, can also include the following flag:
+
+\code{#-notitle} : Tell R not to use the first line of the output
+as the header.
+
+}
 \examples{
 \dontrun{
 --------------------------------------------------------------------------------------------------
